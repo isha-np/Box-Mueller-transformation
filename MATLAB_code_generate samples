@@ -1,0 +1,20 @@
+M=1e5;                                                            % Number of samples
+R=rand(M,1);Z=rand(M,1);                                          % Generate M samples of uniform RVs from (0, 1)
+N=1000;R_range=linspace(0,1,N);R_pdf=ones(N,1);                   % Compute uniform PDF of R
+Z_range=linspace(0,1,N);Z_pdf=ones(N,1);                          % Compute uniform PDF of Z
+figure(1);subplot(211);bin=20;
+histogram(R,bin,"Normalization","pdf");                           % histogram to approximate PDF of R
+axis([0 1 0 1.15]);h=line(R_range,R_pdf);
+h.LineWidth=3;h.Color="r";
+xlabel("r values");
+ylabel("PDF of R");
+title("Histogram of uniform samples of R, true PDF in red");
+subplot(212);
+histogram(Z,bin,"Normalization","pdf");
+axis([0 1 0 1.15]);
+h=line(R_range,R_pdf);
+h.LineWidth=3;
+h.Color="r";
+xlabel("z values");
+ylabel("PDF of Z");
+title("Histogram of uniform samples of Z, true PDF in red");
