@@ -1,0 +1,29 @@
+X=sqrt(-2*log(R) ).*cos(2*pi.*Z);                                           % Box-Mueller transformation for X
+Y=sqrt(-2*log(R)).*sin(2*pi.*Z);                                            % Box-Mueller transformation for Y
+N=4*N;
+X_range=linspace(-4,4,N);
+Y_range=linspace(-4,4,N);
+pdX=fitdist(X,"Normal");
+X_pdf=pdf(pdX,X_range);                                                     % Obtain Gaussian PDF of X
+pdY=fitdist(Y,"Normal");
+Y_pdf=pdf(pdY,Y_range);                                                     % Obtain Gaussian PDF of Y
+figure(2);
+subplot(211);
+bin=50;
+histogram(X,bin,"Normalization","pdf");
+axis([-4 4 0 0.5])
+h=line(X_range,X_pdf);
+h.LineWidth=3;
+h.Color= "y";
+xlabel("x values");
+ylabel("PDF of X");
+title("Histogram of uniform samples of X, true PDF in yellow");
+subplot(212);
+histogram(Y,bin,"Normalization","pdf");
+axis([-4 4 0 0.5]);
+h=line(Y_range,Y_pdf);
+h.LineWidth=3;
+h.Color="r";
+xlabel("y values");
+ylabel("PDF of Y");
+title("Histogram of uniform samples of Y, true PDF in red");
